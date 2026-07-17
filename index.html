@@ -1,1 +1,160 @@
-//index.html
+<!--index.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./styles/index.css"/>
+  
+  <title>Greeting Card</title>
+  <style>
+    * {
+  box-sizing: border-box;
+}
+body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #e0f7fa);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      position: relative;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      padding: 2rem;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card::before {
+      content: "🎁";
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      font-size: 2rem;
+    }
+
+    .card::after {
+      content: "🎁";
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      font-size: 2rem;
+    }
+
+    h1 {
+      color: #d32f2f;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .share-btn {
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .share-btn:hover {
+      background-color: #01579b;
+    }
+
+    .share-btn:focus {
+      outline: 2px solid #81d4fa;
+    }
+  /*
+@keyframes giftFall {
+  0% { transform: translateY(-100px); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.giftBox {
+  position: absolute;
+  top: -50px;
+  font-size: 1.5rem;
+  animation: giftFall 10s linear infinite;
+}
+*/
+  .giftBoxe {
+  position: absolute;
+  font-size: 40px;
+  animation: fall 15s linear forwards;
+}
+
+@keyframes fall {
+  from { top: -50px; }
+  to { top: 100vh; }
+}
+  </style>
+  <script>
+      function shareCard() {
+  const pageUrl = encodeURIComponent(window.location.href);
+  const message = encodeURIComponent("Check this out!");
+  const whatsappUrl = `https://wa.me/?text=${message}%20${pageUrl}`;
+
+  window.open(whatsappUrl, "_blank");
+}
+  </script>
+</head>
+<body class="giftBoxes">
+  <div class="card">
+    <h1>Birthday Wishes!</h1>
+    <p>Wishing you joy, peace, and good tidings.!!</p>
+    <button class="share-btn" onclick="shareCard()">Share on Social Media</button>
+  </div>
+
+  <script type="text/javascript">
+  /*
+    function createGiftBox() {
+      const giftBox = document.createElement('div');
+      giftBox.className = 'giftBoxes';
+      giftBox.textContent = '🎁';
+      giftBox.style.left = `${Math.random() * window.innerWidth}px`;
+      document.body.appendChild(giftBox);
+
+      setTimeout(() => giftBox.remove(), 15000);
+    }
+
+setInterval(createGiftBox, 500);
+
+*/
+  function createGiftBox() {
+  const giftBox = document.createElement('div');
+  giftBox.className = 'giftBoxe';
+  giftBox.textContent = '🎁';
+
+  // random horizontal position
+  giftBox.style.left = `${Math.random() * window.innerWidth}px`;
+
+  // start above the screen
+  giftBox.style.top = `-50px`;
+
+  document.body.appendChild(giftBox);
+
+  // remove after falling
+  setTimeout(() => giftBox.remove(), 15000);
+}
+
+setInterval(createGiftBox, 500);
+    
+  </script>
+</body>
+  </html>
